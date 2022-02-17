@@ -6,7 +6,7 @@ export const TypeDefs = gql`
     type User {
         id: String!
         name: String!
-        image: String
+        avatar: String
         active: Boolean!
     }
 
@@ -24,6 +24,7 @@ export const TypeDefs = gql`
     # Tournaments
 
     type Tournament {
+        id: String!
         name: String!
         public: Boolean!
         password: String
@@ -43,9 +44,11 @@ export const TypeDefs = gql`
     }
 
     type Mutation {
-        createUser(id: String, name: String, active: Boolean): User!
+        createUser(id: String, name: String, avatar: String, active: Boolean): User!
+        editUser(id: String, name: String, avatar: String, active: Boolean): User!
         deleteUser(id: String): User
-        createTournament(name: String, private: Boolean, password: String, playStyle: String, glitchless: Boolean, host: String): Tournament!
+        createTournament(id: String, name: String, private: Boolean, password: String, playStyle: String, glitchless: Boolean, host: String): Tournament!
+        editTournament(id: String, password: String, playStyle: String, glitchless: Boolean, host: String, participant: String, spectator: String): Tournament!
         deleteTournament(password: String): Tournament
     }
 `;
