@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../../styles/Main.module.css';
 
-import { Checkbox, TextField, Collapse, Button, Container } from "@mui/material";
+import { Checkbox, TextField, Button } from "@mui/material";
 import React from 'react';
 
 const Host: NextPage = () => {
