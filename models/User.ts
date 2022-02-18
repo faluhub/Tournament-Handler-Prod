@@ -6,7 +6,6 @@ const UserSchema = new mongoose.Schema({
     active: Boolean,
     country: String,
     participatingTournaments: [mongoose.Schema.Types.ObjectId],
-    spectatingTournaments: [mongoose.Schema.Types.ObjectId]
 });
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);

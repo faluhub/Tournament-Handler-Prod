@@ -6,9 +6,10 @@ export default async function handler(req: any, res: any) {
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
     try {
-        if (req.method === "GET") {
+        if (req.method === "POST") {
             dbConnect();
-            let user = await User.findById(req.query.id);
+            // TODO validate fields monkaLaugh
+            let user = await User.create(req.body.user);
             res.status(200).json({
                 success: true,
                 user
