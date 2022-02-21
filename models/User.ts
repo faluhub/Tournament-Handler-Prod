@@ -1,11 +1,15 @@
 import mongoose from 'mongoose';
 
-const UserSchema = new mongoose.Schema({
+export const RawUserSchema = {
+    id: String,
     name: String,
     image: String,
     active: Boolean,
     country: String,
-    participatingTournaments: [mongoose.Schema.Types.ObjectId],
-});
+    spectating: String,
+    participating: String
+}
+
+const UserSchema = new mongoose.Schema(RawUserSchema);
 
 export default mongoose.models.User || mongoose.model('User', UserSchema);

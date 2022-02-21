@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
-const TournamentSchema = new mongoose.Schema({
+export const RawTournamentSchema = {
+    id: String,
     name: String,
     description: String,
     theme: {
@@ -9,10 +10,14 @@ const TournamentSchema = new mongoose.Schema({
     },
     public: Boolean,
     password: String,
-    playStyle: String,
+    random: Boolean,
+    glitchless: Boolean,
     tags: [String],
-    participants: [mongoose.Schema.Types.ObjectId],
-    spectators: [mongoose.Schema.Types.ObjectId],
-});
+    host: String,
+    participants: [String],
+    spectators: [String]
+}
+
+const TournamentSchema = new mongoose.Schema(RawTournamentSchema);
 
 export default mongoose.models.Tournament || mongoose.model('Tournament', TournamentSchema);

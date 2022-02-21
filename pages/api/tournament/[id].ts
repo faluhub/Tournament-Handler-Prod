@@ -7,9 +7,15 @@ export default async function handler(req: any, res: any) {
 
     if (req.method === "GET") {
         dbConnect();
-        let tournament = await Tournament.findById(req.query.id);
-        res.status(200).json(tournament);
-        return true;
+        const tournament = await Tournament.find({ id: req.query.id });
+
+        if (!tournament[0] === undefined) {
+            res.status(200).json(tournament[0]);
+            return true;
+        } else {
+            res.status(404).json({ message: "Not Found" });
+            return false;
+        }
     }
 
     res.end();

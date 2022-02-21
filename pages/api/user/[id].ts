@@ -8,15 +8,18 @@ export default async function handler(req: any, res: any) {
     try {
         if (req.method === "GET") {
             dbConnect();
-            let user = await User.findById(req.query.id);
-            res.status(200).json({
-                success: true,
-                user
-            });
-            return true;
+            const user = await User.find({ id: req.query.id});
+            
+            if (!user[0] === undefined) {
+                res.status(200).json(user[0]);
+                return true;
+            } else {
+                res.status(404).json({ message: "Not Found" });
+                return false;
+            }
         }
-    } catch (err) {
-        res.status(500).json({ success: false });
+    } catch(e) {
+        res.status(500).json({ message: "Internal Server Error" });
         return false;
     }
 
