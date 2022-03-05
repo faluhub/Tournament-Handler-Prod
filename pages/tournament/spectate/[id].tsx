@@ -29,11 +29,13 @@ const SpectateID: NextPage = () => {
     };
 
     function handleIconClick(e: any) {
-        var target = e.target.dataset.testid;
-        if (!target) { target = e.target.farthestViewportElement.dataset.testid; }
-
-        const [bd, setBd] = backdrops[target];
-        setBd(!bd);
+        if (!getAnyBackdropOpen()) {
+            var target = e.target.dataset.testid;
+            if (!target) { target = e.target.farthestViewportElement.dataset.testid; }
+    
+            const [bd, setBd] = backdrops[target];
+            setBd(!bd);
+        }
     }
 
     function getBackdropOpen(icon: any) {
@@ -49,6 +51,7 @@ const SpectateID: NextPage = () => {
                 return true;
             }
         }
+        return false;
     }
 
     function closeBackdrop(e: any) {
@@ -71,7 +74,7 @@ const SpectateID: NextPage = () => {
             </Head>
             <main>
                 <div className={styles.navigation}>
-                    <div className={styles.leftnav}>
+                    <div className={styles.leftnav} hidden={getAnyBackdropOpen()}>
                         <AccountBox onClick={handleIconClick} className={styles.navitem} />
                         <Backdrop
                             sx={{ zIndex: 3 }}

@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -7,13 +8,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <div className="mount">
-            {
-                !router.route.includes("spectate/") ? (
-                    // navbar here
-                    ("")
-                ) : ("")
-            }
-            <Component {...pageProps} />
+            <SessionProvider session={pageProps.session}>
+                {
+                    !router.route.includes("spectate/") ? (
+                        // navbar here
+                        ("")
+                    ) : ("")
+                }
+                <Component {...pageProps} />
+            </SessionProvider>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import dbConnect from "../../../lib/dbConnect";
+import dbConnect from "../../../lib/mongoose";
 import Tournament from "../../../models/Tournament";
 
 export default async function handler(req: any, res: any) {

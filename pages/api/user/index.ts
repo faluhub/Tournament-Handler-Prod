@@ -1,4 +1,4 @@
-import dbConnect from "../../../lib/dbConnect";
+import dbConnect from "../../../lib/mongoose";
 import User from "../../../models/User";
 import { RawUserSchema } from "../../../models/User";
 
@@ -14,13 +14,13 @@ async function handlePost(req: any, res: any) {
         if (Object.keys(RawUserSchema).includes(i.toLowerCase())) {
             data[i.toLowerCase()] = req.body[i];
         } else {
-            res.status(400).json({ message: "Bad Request" });
+            res.status(400).json({ message: "Bad Request with " + i });
             return false;
         }
     }
 
     if (Object.keys(data).length < Object.keys(RawUserSchema).length) {
-        res.status(400).json({ message: "Bad Request" });
+        res.status(400).json({ message: `Bad Request: ${Object.keys(data).length} < ${Object.keys(RawUserSchema).length}` });
         return false;
     }
 

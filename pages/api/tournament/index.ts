@@ -1,4 +1,4 @@
-import dbConnect from "../../../lib/dbConnect";
+import dbConnect from "../../../lib/mongoose";
 import Tournament from "../../../models/Tournament";
 import { RawTournamentSchema } from "../../../models/Tournament";
 
